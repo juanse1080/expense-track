@@ -1,0 +1,24 @@
+{
+  "name": "expense-track",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/expense-track/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "expense-track:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "expense-track:build:development"
+        },
+        "production": {
+          "buildTarget": "expense-track:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
