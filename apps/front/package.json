@@ -1,0 +1,9 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@storybook/addon-interactions": "^8.0.2"
+  }
+}

@@ -7,7 +7,13 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/app/components/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@utils/*": ["src/app/utils/*"]
+    }
   },
   "files": [],
   "include": [],
@@ -20,6 +26,9 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./.storybook/tsconfig.json"
     }
   ],
   "extends": "../../tsconfig.base.json",

@@ -1,5 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+} from '@angular/core';
+
+import {
+  ButtonInputs,
+  buttonSize,
+  buttonVariant,
+  classes,
+} from './button.component.classes';
 
 @Component({
   selector: 'et-button',
@@ -15,8 +27,15 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrl: './button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {
+export class ButtonComponent implements ButtonInputs, OnChanges {
+  classes = {};
+
   @Input() disabled: boolean = false;
   @Input() fullWidth: boolean = false;
-  @Input() class: string = '';
+  @Input() size: buttonSize = 'md';
+  @Input() variant: buttonVariant = 'contained';
+
+  ngOnChanges(): void {
+    this.classes = classes(this);
+  }
 }

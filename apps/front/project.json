@@ -17,7 +17,7 @@
         "tsConfig": "apps/front/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/front/src/favicon.ico", "apps/front/src/assets"],
-        "styles": ["apps/front/src/styles.scss"],
+        "styles": ["apps/front/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -73,6 +73,54 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/front/jest.config.ts"
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/front/.storybook",
+        "browserTarget": "front:build",
+        "styles": ["apps/front/src/styles.css"],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/front",
+        "configDir": "apps/front/.storybook",
+        "browserTarget": "front:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/front/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "front:build-storybook",
+        "staticFilePath": "dist/storybook/front"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "front:build-storybook:ci"
+        }
       }
     }
   }
