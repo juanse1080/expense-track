@@ -1,0 +1,11 @@
+<button
+  [ngClass]="{
+    'bg-blue-500 text-white font-bold py-2 px-4 rounded-full': true,
+    'opacity-50 cursor-not-allowed': disabled,
+    'hover:bg-blue-700': !disabled,
+    'w-full': fullWidth
+  }"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
+</button>
