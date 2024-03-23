@@ -1,20 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
 import { merge } from '@utils/merge-clsx';
-import { InputBox } from './input-box';
 
 @Component({
-  selector: 'et-input',
+  selector: '[et-input-label]',
   standalone: true,
-  imports: [CommonModule, InputBox],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
+  imports: [CommonModule],
+  templateUrl: './input-label.component.html',
+  styleUrl: './input-label.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent {
-  @Input({ required: true }) for!: string;
+export class InputLabelComponent {
   @Input() required: boolean = false;
-  @Input() disabled: boolean = false;
 
   @Input() class: string = '';
   @HostBinding('class')

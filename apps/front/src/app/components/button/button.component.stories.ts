@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import type { Meta } from '@storybook/angular';
 import { withNgContent } from '@utils/storybook';
 import { ButtonComponent } from './button.component';
 
@@ -23,9 +23,12 @@ const meta: Meta<ButtonComponent> = {
   },
 };
 export default meta;
-type Story = StoryObj<ButtonComponent>;
 
-const buttonWithNgContent = withNgContent<ButtonComponent>('et-button');
+const buttonWithNgContent = withNgContent<ButtonComponent>(
+  'button',
+  'Holaaaaa',
+  { attrs: 'et-button' }
+);
 
 export const Basic = buttonWithNgContent({
   args: {

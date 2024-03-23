@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { ComponentsModule } from '@components/components.module';
 
 @Component({
-  selector: 'et-home',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ComponentsModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
-export class HomeComponent {}
+export class LoginComponent {}

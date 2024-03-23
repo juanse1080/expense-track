@@ -21,11 +21,11 @@ export const classes = ({
   'text-sm py-2 px-4': size === 'sm',
   'text-md py-4 px-6': size === 'md',
   'text-lg py-6 px-8': size === 'lg',
-  'text-blue-500': variant === 'text',
-  'bg-blue-500 text-white': variant === 'contained',
-  'border-2 border-blue-500 text-blue-500': variant === 'outlined',
-  'hover:bg-blue-50': variant === 'text' && !disabled,
-  'hover:bg-blue-700': variant === 'contained' && !disabled,
-  'hover:border-blue-700 hover:text-blue-700':
+  'text-primary bg-blue-50': variant === 'text',
+  'bg-primary text-white': variant === 'contained',
+  'border border-primary text-primary': variant === 'outlined',
+  'hover:bg-blue-100': variant === 'text' && !disabled,
+  'hover:bg-primary-dark': variant === 'contained' && !disabled,
+  'hover:border-primary-dark hover:text-primary-dark':
     variant === 'outlined' && !disabled,
 });

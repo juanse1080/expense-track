@@ -1,3 +1,3 @@
-:host {
-  display: block;
+:host ::ng-deep input[et-input-control] {
+  @apply ring-0 outline-0 bg-[none] w-full;
 }
