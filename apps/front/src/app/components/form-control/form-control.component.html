@@ -1,0 +1,8 @@
+<ng-content select="[et-input-label]"></ng-content>
+<div et-input-box>
+  <ng-content select="input[et-input-control]"></ng-content>
+  @if (type === "password") {
+  <button et-input-adornment position="end">ojo</button>
+  }
+</div>
+<ng-content select="[et-input-helper-text]"></ng-content>

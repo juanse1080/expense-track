@@ -11,6 +11,7 @@ import { merge } from '@utils/merge-clsx';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputLabelComponent {
+  @Input({ required: true }) for!: string;
   @Input() required: boolean = false;
 
   @Input() class: string = '';

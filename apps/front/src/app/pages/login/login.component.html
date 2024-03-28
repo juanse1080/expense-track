@@ -6,14 +6,14 @@
       alt=""
     />
     <et-card class="flex flex-col items-end gap-5 p-10 w-1/3">
-      <et-input class="w-full" for="email">
-        <span et-input-label>Email</span>
+      <et-form-control class="w-full" for="email">
+        <span et-input-label for="email" [required]="true">Email</span>
         <input et-input-control id="email" type="email" />
-      </et-input>
-      <et-input class="w-full" for="password">
-        <span et-input-label>Password</span>
+      </et-form-control>
+      <et-form-control class="w-full" for="password">
+        <span et-input-label for="password" [required]="true">Password</span>
         <input et-input-control id="password" type="password" />
-      </et-input>
+      </et-form-control>
       <button et-button variant="contained">Sign in</button>
     </et-card>
   </div>
