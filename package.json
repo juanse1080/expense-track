@@ -22,7 +22,8 @@
     "libs/prisma:generate": "nx prisma:generate prisma-schema",
     "libs/prisma:seed": "nx prisma:seed prisma-schema",
     "libs/ui:test": "nx test ui",
-    "libs/ui:test-cov": "nx test ui --coverage"
+    "libs/ui:test-cov": "nx test ui --coverage",
+    "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "private": true,
   "dependencies": {
