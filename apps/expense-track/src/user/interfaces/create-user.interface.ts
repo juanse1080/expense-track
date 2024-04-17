@@ -1,5 +1,5 @@
 export interface CreateUserInput {
-  name: string;
-  email: string;
-  roles: string[];
+  name: string
+  email: string
+  roles: string[]
 }

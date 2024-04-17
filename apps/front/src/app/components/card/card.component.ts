@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
-import { twMerge } from 'tailwind-merge';
+import { CommonModule } from '@angular/common'
+import { Component, HostBinding, Input } from '@angular/core'
+import { twMerge } from 'tailwind-merge'
 
 @Component({
   selector: 'et-card',
@@ -10,10 +10,10 @@ import { twMerge } from 'tailwind-merge';
   styleUrl: './card.component.css',
 })
 export class CardComponent {
-  @Input() class: string = '';
+  @Input() class: string = ''
 
   @HostBinding('class')
   get hostClasses(): string {
-    return twMerge('rounded-lg bg-white p-5', this.class);
+    return twMerge('rounded-lg bg-white p-5', this.class)
   }
 }

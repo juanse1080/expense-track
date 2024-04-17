@@ -1,18 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { InputAdornment } from '@components/input-adornment/input-adornment.component';
-import { InputBox } from '@components/input-box/input-box.component';
-import { InputControl } from '@components/input-control/input-control.component';
-import { InputHelperText } from '@components/input-helper-text/input-helper-text.component';
-import { InputLabelComponent } from '@components/input-label/input-label.component';
+import { CommonModule } from '@angular/common'
+import { InputAdornment } from '@components/input-adornment/input-adornment.component'
+import { InputBox } from '@components/input-box/input-box.component'
+import { InputControl } from '@components/input-control/input-control.component'
+import { InputHelperText } from '@components/input-helper-text/input-helper-text.component'
+import { InputLabelComponent } from '@components/input-label/input-label.component'
 import {
   StoryObj,
   argsToTemplate,
   moduleMetadata,
   type Meta,
-} from '@storybook/angular';
-import { FormControlComponent } from './form-control.component';
+} from '@storybook/angular'
+import { FormControlComponent } from './form-control.component'
 
-type FormControlAttrs = FormControlComponent & { content?: string };
+type FormControlAttrs = FormControlComponent & { content?: string }
 
 const meta: Meta<FormControlAttrs> = {
   component: FormControlComponent,
@@ -40,10 +40,10 @@ const meta: Meta<FormControlAttrs> = {
     `,
   }),
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<FormControlAttrs>;
+export default meta
+type Story = StoryObj<FormControlAttrs>
 
 export const Default: Story = {
   args: {
@@ -52,7 +52,7 @@ export const Default: Story = {
       <input et-input-control id="basic" type="text">
     `,
   },
-};
+}
 
 export const Required: Story = {
   args: {
@@ -61,7 +61,7 @@ export const Required: Story = {
       <input et-input-control id="required" type="text">
     `,
   },
-};
+}
 
 export const Placeholder: Story = {
   args: {
@@ -70,7 +70,7 @@ export const Placeholder: Story = {
       <input et-input-control id="placeholder" type="text" placeholder="hola">
     `,
   },
-};
+}
 
 export const HelperText: Story = {
   args: {
@@ -80,7 +80,7 @@ export const HelperText: Story = {
       <span et-input-helper-text>Holaaaaa</span>
     `,
   },
-};
+}
 
 export const Password: Story = {
   args: {
@@ -90,4 +90,4 @@ export const Password: Story = {
       <input et-input-control id="placeholder" type="password" placeholder="****">
     `,
   },
-};
+}
