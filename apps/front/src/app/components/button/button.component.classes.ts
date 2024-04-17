@@ -1,11 +1,11 @@
-export type buttonSize = 'lg' | 'md' | 'sm';
-export type buttonVariant = 'text' | 'contained' | 'outlined';
+export type buttonSize = 'lg' | 'md' | 'sm'
+export type buttonVariant = 'text' | 'contained' | 'outlined'
 
 export interface ButtonInputs {
-  variant: buttonVariant;
-  size: buttonSize;
-  fullWidth: boolean;
-  disabled: boolean;
+  variant: buttonVariant
+  size: buttonSize
+  fullWidth: boolean
+  disabled: boolean
 }
 
 export const classes = ({
@@ -28,4 +28,4 @@ export const classes = ({
   'hover:bg-primary-dark': variant === 'contained' && !disabled,
   'hover:border-primary-dark hover:text-primary-dark':
     variant === 'outlined' && !disabled,
-});
+})

@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { Component, HostBinding, Input } from '@angular/core'
 
-import { merge } from '@utils/merge-clsx';
+import { merge } from '@utils/merge-clsx'
 import {
   ButtonInputs,
   buttonSize,
   buttonVariant,
   classes,
-} from './button.component.classes';
+} from './button.component.classes'
 
 @Component({
   selector: 'button[et-button]',
@@ -18,15 +18,15 @@ import {
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements ButtonInputs {
-  @Input() disabled: boolean = false;
-  @Input() fullWidth: boolean = false;
-  @Input() size: buttonSize = 'md';
-  @Input() variant: buttonVariant = 'contained';
+  @Input() disabled: boolean = false
+  @Input() fullWidth: boolean = false
+  @Input() size: buttonSize = 'md'
+  @Input() variant: buttonVariant = 'contained'
 
-  @Input() class: string = '';
+  @Input() class: string = ''
 
   @HostBinding('class')
   get hostClasses(): string {
-    return merge(classes(this), this.class);
+    return merge(classes(this), this.class)
   }
 }

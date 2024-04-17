@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { InputHelperTextComponent } from './input-helper-text.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { InputHelperTextComponent } from './input-helper-text.component'
 
 describe('InputHelperTextComponent', () => {
-  let component: InputHelperTextComponent;
-  let fixture: ComponentFixture<InputHelperTextComponent>;
+  let component: InputHelperTextComponent
+  let fixture: ComponentFixture<InputHelperTextComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InputHelperTextComponent],
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(InputHelperTextComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(InputHelperTextComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

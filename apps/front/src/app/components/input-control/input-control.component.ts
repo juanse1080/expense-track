@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core'
 
-let nextUniqueId = 0;
+let nextUniqueId = 0
 
 @Directive({
   selector: 'input[et-input-control], textarea[et-input-control]',
@@ -19,32 +19,32 @@ let nextUniqueId = 0;
   standalone: true,
 })
 export class InputControl {
-  public focused: boolean = false;
-  protected _uid = `et-input-control-${nextUniqueId++}`;
+  public focused: boolean = false
+  protected _uid = `et-input-control-${nextUniqueId++}`
 
-  @Input() name: string = '';
-  @Input() placeholder?: string;
-  @Input() disabled: boolean = false;
-  @Input() required: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() name: string = ''
+  @Input() placeholder?: string
+  @Input() disabled: boolean = false
+  @Input() required: boolean = false
+  @Input() readonly: boolean = false
 
   @Input()
   get id(): string {
-    return this._id;
+    return this._id
   }
   set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this._uid
   }
-  protected _id: string = '';
+  protected _id: string = ''
 
   @Input()
   get type(): string {
-    return this._type;
+    return this._type
   }
   set type(value: string) {
-    this._type = value || 'text';
+    this._type = value || 'text'
   }
-  protected _type = 'text';
+  protected _type = 'text'
 
   constructor(
     protected readonly _elementRef: ElementRef<
@@ -54,19 +54,19 @@ export class InputControl {
 
   onContainerClick() {
     if (!this.focused) {
-      this.focus();
+      this.focus()
     }
   }
 
   focus(options?: FocusOptions): void {
-    console.log(this._elementRef.nativeElement);
-    this._elementRef.nativeElement.focus(options);
+    console.log(this._elementRef.nativeElement)
+    this._elementRef.nativeElement.focus(options)
   }
 
   /** Callback for the cases where the focused state of the input changes. */
   _focusChanged(isFocused: boolean) {
     if (isFocused !== this.focused) {
-      this.focused = isFocused;
+      this.focused = isFocused
     }
   }
 
