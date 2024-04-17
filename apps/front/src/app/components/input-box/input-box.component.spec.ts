@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { InputBoxComponent } from './input-box.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { InputBoxComponent } from './input-box.component'
 
 describe('InputBoxComponent', () => {
-  let component: InputBoxComponent;
-  let fixture: ComponentFixture<InputBoxComponent>;
+  let component: InputBoxComponent
+  let fixture: ComponentFixture<InputBoxComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InputBoxComponent],
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(InputBoxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(InputBoxComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

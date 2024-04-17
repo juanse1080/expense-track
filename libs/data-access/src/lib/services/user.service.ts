@@ -1,5 +1,5 @@
-import { Prisma, PrismaService, User } from '@expense-track/prisma-client';
-import { Injectable } from '@nestjs/common';
+import { Prisma, PrismaService, User } from '@expense-track/prisma-client'
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class DataAccessUserService {
@@ -13,17 +13,17 @@ export class DataAccessUserService {
         roles: true,
       },
       where: userWhereUniqueInput,
-    });
+    })
   }
 
   async getAll(options: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.UserWhereUniqueInput;
-    where?: Prisma.UserWhereInput;
-    orderBy?: Prisma.UserOrderByWithRelationInput;
+    skip?: number
+    take?: number
+    cursor?: Prisma.UserWhereUniqueInput
+    where?: Prisma.UserWhereInput
+    orderBy?: Prisma.UserOrderByWithRelationInput
   }): Promise<User[]> {
-    const { skip, take, cursor, where, orderBy } = options;
+    const { skip, take, cursor, where, orderBy } = options
 
     return this.prisma.user.findMany({
       include: {
@@ -34,7 +34,7 @@ export class DataAccessUserService {
       cursor,
       where,
       orderBy,
-    });
+    })
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
@@ -43,21 +43,21 @@ export class DataAccessUserService {
         roles: true,
       },
       data,
-    });
+    })
   }
 
   async updateUser(options: {
-    where: Prisma.UserWhereUniqueInput;
-    data: Prisma.UserUpdateInput;
+    where: Prisma.UserWhereUniqueInput
+    data: Prisma.UserUpdateInput
   }): Promise<User> {
-    const { where, data } = options;
+    const { where, data } = options
     return this.prisma.user.update({
       include: {
         roles: true,
       },
       data,
       where,
-    });
+    })
   }
 
   async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
@@ -66,6 +66,6 @@ export class DataAccessUserService {
         roles: true,
       },
       where,
-    });
+    })
   }
 }

@@ -1,21 +1,21 @@
-import { Exist, IsUnique } from '@expense-track/prisma-client';
+import { Exist, IsUnique } from '@expense-track/prisma-client'
 import {
   ArrayMinSize,
   IsArray,
   IsEmail,
   IsString,
   MinLength,
-} from 'class-validator';
-import { CreateUserInput } from '../interfaces/create-user.interface';
+} from 'class-validator'
+import { CreateUserInput } from '../interfaces/create-user.interface'
 
 export class CreateUserDto implements CreateUserInput {
   @IsString()
   @MinLength(1)
-  name: string;
+  name: string
 
   @IsEmail()
   @IsUnique({ table: 'user', column: 'email' })
-  email: string;
+  email: string
 
   @IsArray()
   @ArrayMinSize(1)
@@ -25,8 +25,8 @@ export class CreateUserDto implements CreateUserInput {
     column: 'code',
     condition: (value) => ({ in: value }),
     validate: (value, response) => {
-      return value.length === response.length;
+      return value.length === response.length
     },
   })
-  roles: string[];
+  roles: string[]
 }

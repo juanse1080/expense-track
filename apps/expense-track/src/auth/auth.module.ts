@@ -1,10 +1,10 @@
-import { DataAccessModule } from '@expense-track/data-access';
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { DataAccessModule } from '@expense-track/data-access'
+import { Module } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
 
-import { jwtConstants } from './auth.constants';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
+import { jwtConstants } from './auth.constants'
+import { AuthController } from './auth.controller'
+import { AuthService } from './auth.service'
 
 @Module({
   imports: [

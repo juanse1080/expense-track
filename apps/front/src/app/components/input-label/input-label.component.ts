@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
-import { merge } from '@utils/merge-clsx';
+import { CommonModule } from '@angular/common'
+import { Component, HostBinding, Input } from '@angular/core'
+import { merge } from '@utils/merge-clsx'
 
 @Component({
   selector: '[et-input-label]',
@@ -11,12 +11,12 @@ import { merge } from '@utils/merge-clsx';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputLabelComponent {
-  @Input({ required: true }) for!: string;
-  @Input() required: boolean = false;
+  @Input({ required: true }) for!: string
+  @Input() required: boolean = false
 
-  @Input() class: string = '';
+  @Input() class: string = ''
   @HostBinding('class')
   get hostClasses(): string {
-    return merge(this.class);
+    return merge(this.class)
   }
 }

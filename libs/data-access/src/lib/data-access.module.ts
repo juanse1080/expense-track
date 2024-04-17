@@ -1,10 +1,10 @@
-import { PrismaClientModule } from '@expense-track/prisma-client';
-import { Module } from '@nestjs/common';
+import { PrismaClientModule } from '@expense-track/prisma-client'
+import { Module } from '@nestjs/common'
 import {
   DataAccessActionService,
   DataAccessRoleService,
   DataAccessUserService,
-} from './services';
+} from './services'
 
 @Module({
   imports: [PrismaClientModule],
