@@ -17,8 +17,18 @@
       "options": {
         "jestConfig": "libs/prisma-client/jest.config.ts"
       }
+    },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "tsc --noEmit -p libs/prisma-client/tsconfig.json"
+          }
+        ]
+      }
     }
   },
   "tags": [],
-  "implicitDependencies": ["prisma-schema"]
+  "implicitDependencies": ["prisma-schema", "types"]
 }

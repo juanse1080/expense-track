@@ -23,7 +23,7 @@ export class AuthController {
 
   @Post('sign-up')
   async register(@Body() body: RegisterDto) {
-    await this.authService.register(body)
+    return await this.authService.register(body)
   }
 
   @UseGuards(AuthGuard)

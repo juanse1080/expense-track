@@ -2,16 +2,16 @@ import {
   DataAccessModule,
   DataAccessUserService,
 } from '@expense-track/data-access'
-import { User } from '@expense-track/prisma-client'
 import { createMock } from '@golevelup/ts-jest'
 import { Test, TestingModule } from '@nestjs/testing'
 import * as bcryptjs from 'bcryptjs'
 
+import { UserModel } from '@expense-track/types'
 import { UserService } from './user.service'
 
 describe('UserService', () => {
   const password = 'test'
-  const user: User = {
+  const user: UserModel = {
     id: 6,
     name: 'Juan',
     email: 'juanmarcon+20@gmail.com',

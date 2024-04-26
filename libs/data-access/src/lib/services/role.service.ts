@@ -1,4 +1,5 @@
-import { Prisma, PrismaService, Role } from '@expense-track/prisma-client'
+import { Prisma, PrismaService } from '@expense-track/prisma-client'
+import { RoleModel } from '@expense-track/types'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -7,7 +8,7 @@ export class DataAccessRoleService {
 
   async getUnique(
     userWhereUniqueInput: Prisma.RoleWhereUniqueInput
-  ): Promise<Role | null> {
+  ): Promise<RoleModel | null> {
     return this.prisma.role.findUnique({
       where: userWhereUniqueInput,
     })
@@ -19,7 +20,7 @@ export class DataAccessRoleService {
     cursor?: Prisma.RoleWhereUniqueInput
     where?: Prisma.RoleWhereInput
     orderBy?: Prisma.RoleOrderByWithRelationInput
-  }): Promise<Role[]> {
+  }): Promise<RoleModel[]> {
     const { skip, take, cursor, where, orderBy } = options
 
     return this.prisma.role.findMany({
@@ -31,7 +32,7 @@ export class DataAccessRoleService {
     })
   }
 
-  async createRole(data: Prisma.RoleCreateInput): Promise<Role> {
+  async createRole(data: Prisma.RoleCreateInput): Promise<RoleModel> {
     return this.prisma.role.create({
       data,
     })
@@ -40,7 +41,7 @@ export class DataAccessRoleService {
   async updateRole(options: {
     where: Prisma.RoleWhereUniqueInput
     data: Prisma.RoleUpdateInput
-  }): Promise<Role> {
+  }): Promise<RoleModel> {
     const { where, data } = options
     return this.prisma.role.update({
       data,
@@ -48,7 +49,7 @@ export class DataAccessRoleService {
     })
   }
 
-  async deleteRole(where: Prisma.RoleWhereUniqueInput): Promise<Role> {
+  async deleteRole(where: Prisma.RoleWhereUniqueInput): Promise<RoleModel> {
     return this.prisma.role.delete({
       where,
     })

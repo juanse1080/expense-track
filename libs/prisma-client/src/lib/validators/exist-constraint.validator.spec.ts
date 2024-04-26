@@ -1,4 +1,4 @@
-import { Role } from '../interfaces'
+import { RoleModel } from '@expense-track/types'
 import { PrismaService } from '../prisma.service'
 import { ExistConstraint } from './exist-constraint.validator'
 
@@ -42,7 +42,7 @@ describe('ExistConstraint', () => {
   it('should be valid', async () => {
     jest
       .spyOn(prismaService[table], 'findMany')
-      .mockResolvedValue([{ code: value[0] } as Role])
+      .mockResolvedValue([{ code: value[0] } as RoleModel])
 
     const isValid = await existConstraint.validate(value, {
       ...commonArgs,

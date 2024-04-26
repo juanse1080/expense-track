@@ -1,4 +1,5 @@
-import { Prisma, PrismaService, User } from '@expense-track/prisma-client'
+import { Prisma, PrismaService } from '@expense-track/prisma-client'
+import { UserModel } from '@expense-track/types'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -7,10 +8,14 @@ export class DataAccessUserService {
 
   async getUnique(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ): Promise<User | null> {
+  ): Promise<UserModel | null> {
     return this.prisma.user.findUnique({
       include: {
-        roles: true,
+        roles: {
+          include: {
+            actions: true,
+          },
+        },
       },
       where: userWhereUniqueInput,
     })
@@ -22,12 +27,16 @@ export class DataAccessUserService {
     cursor?: Prisma.UserWhereUniqueInput
     where?: Prisma.UserWhereInput
     orderBy?: Prisma.UserOrderByWithRelationInput
-  }): Promise<User[]> {
+  }): Promise<UserModel[]> {
     const { skip, take, cursor, where, orderBy } = options
 
     return this.prisma.user.findMany({
       include: {
-        roles: true,
+        roles: {
+          include: {
+            actions: true,
+          },
+        },
       },
       skip,
       take,
@@ -37,10 +46,14 @@ export class DataAccessUserService {
     })
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async createUser(data: Prisma.UserCreateInput): Promise<UserModel> {
     return this.prisma.user.create({
       include: {
-        roles: true,
+        roles: {
+          include: {
+            actions: true,
+          },
+        },
       },
       data,
     })
@@ -49,21 +62,29 @@ export class DataAccessUserService {
   async updateUser(options: {
     where: Prisma.UserWhereUniqueInput
     data: Prisma.UserUpdateInput
-  }): Promise<User> {
+  }): Promise<UserModel> {
     const { where, data } = options
     return this.prisma.user.update({
       include: {
-        roles: true,
+        roles: {
+          include: {
+            actions: true,
+          },
+        },
       },
       data,
       where,
     })
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
+  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<UserModel> {
     return this.prisma.user.delete({
       include: {
-        roles: true,
+        roles: {
+          include: {
+            actions: true,
+          },
+        },
       },
       where,
     })
