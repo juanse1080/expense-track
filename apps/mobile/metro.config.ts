@@ -18,4 +18,9 @@ config.resolver.nodeModulesPaths = [
   path.resolve(monorepoRoot, 'node_modules'),
 ]
 
+config.resolve.fallback = {
+  ...config.resolve.fallback,
+  crypto: require.resolve('expo-crypto'),
+}
+
 module.exports = config
