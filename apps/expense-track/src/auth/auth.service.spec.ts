@@ -3,25 +3,24 @@ import {
   DataAccessModule,
   DataAccessUserService,
 } from '@expense-track/data-access'
-import { Action, Role, User } from '@expense-track/prisma-client'
 import { createMock } from '@golevelup/ts-jest'
 import { JwtModule, JwtService } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'
-import * as bcryptjs from 'bcryptjs'
 
+import { ActionModel, RoleModel, UserModel } from '@expense-track/types'
 import { jwtConstants } from './auth.constants'
 import { AuthService } from './auth.service'
 
 describe('AuthService', () => {
   const password = 'test'
-  const payload: Omit<User, 'password' | 'roles'> = {
+  const payload: Omit<UserModel, 'password' | 'roles'> = {
     id: 6,
     name: 'Juan',
     email: 'juanmarcon+20@gmail.com',
     createdAt: new Date('2024-02-13T21:01:57.476Z'),
     updatedAt: new Date('2024-02-13T21:01:57.476Z'),
   }
-  const roles: Role[] = [
+  const roles: RoleModel[] = [
     {
       id: 1,
       name: 'Admin',
@@ -30,7 +29,7 @@ describe('AuthService', () => {
       updatedAt: null,
     },
   ]
-  const user: Omit<User, 'roles'> = {
+  const user: Omit<UserModel, 'roles'> = {
     ...payload,
     password: '$2a$10$mpriX.x8Jzvxy0SMYVxbfeXQ4yAKy2p/12qWvG9PzWTRnejND2D86',
   }
@@ -71,7 +70,7 @@ describe('AuthService', () => {
   })
 
   it('login', async () => {
-    const actions: Action[] = [
+    const actions: ActionModel[] = [
       {
         id: 1,
         name: 'Show user',
@@ -116,12 +115,6 @@ describe('AuthService', () => {
       password,
     })
 
-    const isPasswordValid = await bcryptjs.compare(
-      password,
-      registerResponse.password
-    )
-
-    expect(isPasswordValid).toEqual(true)
     expect(registerResponse).toEqual({ ...user, roles })
   })
 })

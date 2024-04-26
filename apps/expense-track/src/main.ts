@@ -3,7 +3,12 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger, ValidationPipe } from '@nestjs/common'
+import {
+  BadRequestException,
+  Logger,
+  ValidationError,
+  ValidationPipe,
+} from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
@@ -16,7 +21,19 @@ async function bootstrap() {
   const docPrefix = 'docs'
 
   app.setGlobalPrefix(globalPrefix)
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(
+    new ValidationPipe({
+      stopAtFirstError: true,
+      exceptionFactory: (errors: ValidationError[]) => {
+        return new BadRequestException(
+          errors.map((e) => ({
+            message: Object.values(e.constraints)[0],
+            property: e.property,
+          }))
+        )
+      },
+    })
+  )
   useContainer(app.select(AppModule), { fallbackOnErrors: true })
 
   const port = process.env.PORT || 3000
@@ -30,6 +47,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup(docPrefix, app, document)
+  app.enableCors()
   await app.listen(port)
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
