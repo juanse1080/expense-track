@@ -34,6 +34,16 @@
       "options": {
         "lintFilePatterns": ["libs/prisma-schema/**/*.ts"]
       }
+    },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "tsc --noEmit -p libs/prisma-schema/tsconfig.json"
+          }
+        ]
+      }
     }
   },
   "tags": []

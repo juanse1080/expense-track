@@ -2,12 +2,11 @@ import {
   DataAccessActionService,
   DataAccessUserService,
 } from '@expense-track/data-access'
+import { AuthModel, UserModel } from '@expense-track/types'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import * as bcryptjs from 'bcryptjs'
 
-import { User } from '@expense-track/prisma-client'
-import { AuthUser } from './interfaces/auth.interface'
 import { LoginInput } from './interfaces/login.interface'
 import { RegisterInput } from './interfaces/register.dto'
 
@@ -19,17 +18,19 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  async register({ password, email, name }: RegisterInput): Promise<User> {
+  async register({ password, email, name }: RegisterInput): Promise<AuthModel> {
     const hashedPassword = await bcryptjs.hash(password, 10)
 
-    return await this.dataAccessUserService.createUser({
+    const user = await this.dataAccessUserService.createUser({
       name,
       email,
       password: hashedPassword,
     })
+
+    return await this.startSession(user)
   }
 
-  async login({ email, password }: LoginInput): Promise<AuthUser> {
+  async login({ email, password }: LoginInput): Promise<AuthModel> {
     const user = await this.dataAccessUserService.getUnique({ email })
 
     if (!user) throw new UnauthorizedException('Invalid email')
@@ -38,21 +39,34 @@ export class AuthService {
 
     if (!isPasswordValid) throw new UnauthorizedException('Invalid password')
 
-    const { password: _password, roles, ...payload } = user
+    return await this.startSession(user)
+  }
 
+  private async getActionsByRoles(roles: string[]): Promise<string[]> {
     const actions = await this.dataAccessActionService.getAll({
       where: {
         roles: {
           some: {
             code: {
-              in: roles.map(({ code }) => code),
+              in: roles,
             },
           },
         },
       },
     })
 
-    const actionsStrings = actions.map(({ code }) => code)
+    return actions.map(({ code }) => code)
+  }
+
+  private async startSession({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    password,
+    roles,
+    ...payload
+  }: UserModel): Promise<AuthModel> {
+    const actionsStrings = await this.getActionsByRoles(
+      roles.map(({ code }) => code)
+    )
 
     const token = await this.jwtService.signAsync({
       ...payload,

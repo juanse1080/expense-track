@@ -1,8 +1,8 @@
 import { DataAccessUserService } from '@expense-track/data-access'
-import { User } from '@expense-track/prisma-client'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import * as bcryptjs from 'bcryptjs'
 
+import { UserModel } from '@expense-track/types'
 import { Pagination } from '../app/interfaces/pagination.interface'
 import { CreateUserInput } from './interfaces/create-user.interface'
 import { UpdateUserInput } from './interfaces/update-user.interface'
@@ -11,7 +11,7 @@ import { UpdateUserInput } from './interfaces/update-user.interface'
 export class UserService {
   constructor(private readonly dataAccessUserService: DataAccessUserService) {}
 
-  async create({ name, email, roles }: CreateUserInput): Promise<User> {
+  async create({ name, email, roles }: CreateUserInput): Promise<UserModel> {
     const tempPassword = 'test'
     const hashedPassword = await bcryptjs.hash(tempPassword, 10)
 
@@ -25,13 +25,13 @@ export class UserService {
     })
   }
 
-  findAll(pagination: Pagination): Promise<User[]> {
+  findAll(pagination: Pagination): Promise<UserModel[]> {
     return this.dataAccessUserService.getAll({
       ...pagination,
     })
   }
 
-  async findOne(id: number): Promise<User> {
+  async findOne(id: number): Promise<UserModel> {
     const user = await this.dataAccessUserService.getUnique({
       id,
     })
@@ -44,7 +44,7 @@ export class UserService {
   async update(
     id: number,
     { roles, ...others }: UpdateUserInput
-  ): Promise<User> {
+  ): Promise<UserModel> {
     await this.findOne(id)
 
     return await this.dataAccessUserService.updateUser({
@@ -60,7 +60,7 @@ export class UserService {
     })
   }
 
-  async remove(id: number): Promise<User> {
+  async remove(id: number): Promise<UserModel> {
     await this.findOne(id)
 
     return await this.dataAccessUserService.deleteUser({

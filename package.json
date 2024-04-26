@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "tsc": "nx run-many --target=tsc --all=true --verbose",
+    "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "api:tsc": "nx tsc expense-track",
     "api:dev": "nx serve expense-track",
     "api:build": "nx build expense-track",
     "api:e2e": "nx e2e expense-track-e2e",
@@ -15,15 +18,16 @@
     "front:test-cov": "nx test front --coverage",
     "front:storybook": "nx storybook front",
     "front:storybook-test": "nx test-storybook front --url http://127.0.0.1:6006",
+    "libs/data-access:tsc": "nx tsc data-access",
+    "libs/prisma-client:tsc": "nx tsc prisma-client",
     "libs/prisma-client:test": "nx test prisma-client",
     "libs/prisma-client:test-cov": "nx test prisma-client --coverage",
-    "libs/prisma": "nx prisma prisma-schema",
-    "libs/prisma:migrate": "nx prisma:migrate prisma-schema",
-    "libs/prisma:generate": "nx prisma:generate prisma-schema",
-    "libs/prisma:seed": "nx prisma:seed prisma-schema",
-    "libs/ui:test": "nx test ui",
-    "libs/ui:test-cov": "nx test ui --coverage",
-    "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
+    "libs/prisma-schema:tsc": "nx tsc prisma-schema",
+    "libs/prisma-schema": "nx prisma prisma-schema",
+    "libs/prisma-schema:migrate": "nx prisma:migrate prisma-schema",
+    "libs/prisma-schema:generate": "nx prisma:generate prisma-schema",
+    "libs/prisma-schema:seed": "nx prisma:seed prisma-schema",
+    "libs/types:tsc": "nx tsc types"
   },
   "private": true,
   "dependencies": {

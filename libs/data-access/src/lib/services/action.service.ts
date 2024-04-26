@@ -1,4 +1,5 @@
-import { Action, Prisma, PrismaService } from '@expense-track/prisma-client'
+import { Prisma, PrismaService } from '@expense-track/prisma-client'
+import { ActionModel } from '@expense-track/types'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -7,7 +8,7 @@ export class DataAccessActionService {
 
   async getUnique(
     userWhereUniqueInput: Prisma.ActionWhereUniqueInput
-  ): Promise<Action | null> {
+  ): Promise<ActionModel | null> {
     return this.prisma.action.findUnique({
       where: userWhereUniqueInput,
     })
@@ -19,7 +20,7 @@ export class DataAccessActionService {
     cursor?: Prisma.ActionWhereUniqueInput
     where?: Prisma.ActionWhereInput
     orderBy?: Prisma.ActionOrderByWithRelationInput
-  }): Promise<Action[]> {
+  }): Promise<ActionModel[]> {
     const { skip, take, cursor, where, orderBy } = options
 
     return this.prisma.action.findMany({
@@ -31,7 +32,7 @@ export class DataAccessActionService {
     })
   }
 
-  async createAction(data: Prisma.ActionCreateInput): Promise<Action> {
+  async createAction(data: Prisma.ActionCreateInput): Promise<ActionModel> {
     return this.prisma.action.create({
       data,
     })
@@ -40,7 +41,7 @@ export class DataAccessActionService {
   async updateAction(options: {
     where: Prisma.ActionWhereUniqueInput
     data: Prisma.ActionUpdateInput
-  }): Promise<Action> {
+  }): Promise<ActionModel> {
     const { where, data } = options
     return this.prisma.action.update({
       data,
@@ -48,7 +49,9 @@ export class DataAccessActionService {
     })
   }
 
-  async deleteAction(where: Prisma.ActionWhereUniqueInput): Promise<Action> {
+  async deleteAction(
+    where: Prisma.ActionWhereUniqueInput
+  ): Promise<ActionModel> {
     return this.prisma.action.delete({
       where,
     })

@@ -1,3 +1,4 @@
+import { ModelName } from '@expense-track/types'
 import { Injectable } from '@nestjs/common'
 import {
   ValidationArguments,
@@ -6,7 +7,6 @@ import {
   ValidatorConstraintInterface,
   registerDecorator,
 } from 'class-validator'
-import { ModelName } from '../interfaces'
 import { PrismaService } from '../prisma.service'
 
 // decorator options interface
@@ -27,7 +27,7 @@ export class ExistConstraint implements ValidatorConstraintInterface {
       args.constraints[0]
 
     // database query check data is exists
-    const register = await(this.prismaService as any)[table].findMany({
+    const register = await (this.prismaService as any)[table].findMany({
       where: {
         [column]: condition ? condition(value) : value,
       },

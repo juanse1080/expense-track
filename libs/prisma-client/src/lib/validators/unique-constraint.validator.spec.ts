@@ -1,4 +1,4 @@
-import { User } from '../interfaces'
+import { UserModel } from '@expense-track/types'
 import { PrismaService } from '../prisma.service'
 import { IsUniqueConstraint } from './unique-constraint.validator'
 
@@ -48,7 +48,7 @@ describe('IsUniqueConstraint', () => {
   it('should be invalid', async () => {
     jest
       .spyOn(prismaService[table], 'findMany')
-      .mockResolvedValue([{ email: value } as User])
+      .mockResolvedValue([{ email: value } as UserModel])
 
     const isValid = await uniqueConstraint.validate(value, {
       ...commonArgs,
