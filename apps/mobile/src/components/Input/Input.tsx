@@ -1,7 +1,6 @@
 import {
   FormControl,
   FormControlError,
-  FormControlErrorIcon,
   FormControlErrorText,
   FormControlHelper,
   FormControlHelperText,
@@ -67,7 +66,6 @@ const Input = forwardRef<any, InputProps>(
         )}
         {errorText && (
           <FormControlError mt="$1" mx="$2">
-            <FormControlErrorIcon />
             <FormControlErrorText>{errorText}</FormControlErrorText>
           </FormControlError>
         )}
