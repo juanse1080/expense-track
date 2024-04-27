@@ -11,9 +11,9 @@ import {
   Text,
 } from '@gluestack-ui/themed'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
 import { Link } from 'expo-router'
 import { useForm } from 'react-hook-form'
+import LoginImage from './LoginImage'
 
 const defaultValues: Partial<loginSchemaType> = {
   email: '',
@@ -47,12 +47,14 @@ export default function Login() {
   }
 
   return (
-    <Box height="100%" justifyContent="space-between">
-      <Text bold size="4xl" textAlign="center">
-        Welcome to login
-      </Text>
-
+    <Box height="100%" justifyContent="space-between" gap="$5">
+      <Box my="$3" justifyContent="center">
+        <LoginImage height={300} width="100%" color="#6c63ff" />
+      </Box>
       <Box flexDirection="column" gap="$5">
+        <Text bold size="4xl" textAlign="center">
+          Verify user
+        </Text>
         <ControllerInput
           required
           name="email"
