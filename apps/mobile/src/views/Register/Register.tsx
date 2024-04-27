@@ -42,11 +42,10 @@ export default function Register() {
   }
 
   return (
-    <Box height="100%" justifyContent="space-between">
+    <Box height="100%" justifyContent="space-between" gap="$5">
       <Text bold size="4xl" textAlign="center">
-        Welcome to register
+        Create an Account
       </Text>
-
       <Box flexDirection="column" gap="$5">
         <ControllerInput
           required
