@@ -7,15 +7,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 export default function LayoutPage() {
   return (
-    <SafeAreaProvider>
-      <GluestackUIProvider config={config}>
-        <AuthProvider>
-          <StatusBar style="auto" />
+    <GluestackUIProvider config={config}>
+      <AuthProvider>
+        <StatusBar style="auto" />
+        <SafeAreaProvider>
           <Box bg="white" px="$5" height="100%">
             <Slot />
           </Box>
-        </AuthProvider>
-      </GluestackUIProvider>
-    </SafeAreaProvider>
+        </SafeAreaProvider>
+      </AuthProvider>
+    </GluestackUIProvider>
   )
 }
