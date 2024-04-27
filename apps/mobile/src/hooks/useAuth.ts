@@ -4,7 +4,7 @@ import { router } from 'expo-router'
 import { useCallback, useContext } from 'react'
 
 const useAuth = () => {
-  const { auth, setAuth } = useContext(AuthContext)
+  const { loading, setLoading, auth, setAuth } = useContext(AuthContext)
 
   const checkAction = useCallback(
     (action: string) => !auth || auth.actions?.includes(action),
@@ -14,7 +14,7 @@ const useAuth = () => {
   const login = useCallback(
     (newAuth: AuthModel) => {
       setAuth(newAuth)
-      router.push('/home')
+      router.push('/profile')
     },
     [setAuth, router]
   )
@@ -25,6 +25,8 @@ const useAuth = () => {
   }, [setAuth, router])
 
   return {
+    loading,
+    setLoading,
     auth,
     setAuth,
     login,

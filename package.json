@@ -11,6 +11,8 @@
     "api:e2e": "nx e2e expense-track-e2e",
     "api:test": "nx test expense-track",
     "api:test-cov": "nx test expense-track --coverage",
+    "mobile:dev": "nx serve mobile",
+    "mobile:tsc": "nx tsc mobile",
     "front:dev": "nx serve front",
     "front:build": "nx build front",
     "front:e2e": "nx e2e front-e2e",
