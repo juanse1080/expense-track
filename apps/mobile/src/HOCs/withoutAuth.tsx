@@ -1,4 +1,4 @@
-import useAuth from '@/hooks/useAuth'
+import useAuth, { firstPage } from '@/hooks/useAuth'
 import { Text } from '@gluestack-ui/themed'
 import { Redirect } from 'expo-router'
 
@@ -9,7 +9,7 @@ function withoutAuth(Component: ComponentType) {
     const { auth, loading } = useAuth()
 
     if (loading) return <Text>Loading ...</Text>
-    if (!loading && auth) return <Redirect href="/profile" />
+    if (!loading && auth) return <Redirect href={firstPage} />
 
     return <Component {...props} />
   }
