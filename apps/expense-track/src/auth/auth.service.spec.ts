@@ -1,13 +1,12 @@
 import {
-  DataAccessActionService,
+  DataAccessAction,
   DataAccessModule,
-  DataAccessUserService,
-} from '@expense-track/data-access'
+  DataAccessUser,
+} from '@expense-track/nestjs/respositories'
+import { ActionModel, RoleModel, UserModel } from '@expense-track/shared/types'
 import { createMock } from '@golevelup/ts-jest'
 import { JwtModule, JwtService } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'
-
-import { ActionModel, RoleModel, UserModel } from '@expense-track/types'
 import { jwtConstants } from './auth.constants'
 import { AuthService } from './auth.service'
 
@@ -36,8 +35,8 @@ describe('AuthService', () => {
 
   let authService: AuthService
   let jwtService: JwtService
-  let dataAccessUserService: DataAccessUserService
-  let dataAccessActionService: DataAccessActionService
+  let dataAccessUser: DataAccessUser
+  let dataAccessAction: DataAccessAction
 
   beforeEach(async () => {
     jest.clearAllMocks()
@@ -57,12 +56,8 @@ describe('AuthService', () => {
 
     authService = module.get<AuthService>(AuthService)
     jwtService = module.get<JwtService>(JwtService)
-    dataAccessUserService = module.get<DataAccessUserService>(
-      DataAccessUserService
-    )
-    dataAccessActionService = module.get<DataAccessActionService>(
-      DataAccessActionService
-    )
+    dataAccessUser = module.get<DataAccessUser>(DataAccessUser)
+    dataAccessAction = module.get<DataAccessAction>(DataAccessAction)
   })
 
   it('should be defined', () => {
@@ -81,9 +76,9 @@ describe('AuthService', () => {
     ]
 
     jest
-      .spyOn(dataAccessUserService, 'getUnique')
+      .spyOn(dataAccessUser, 'getUnique')
       .mockResolvedValue({ ...user, roles })
-    jest.spyOn(dataAccessActionService, 'getAll').mockResolvedValue(actions)
+    jest.spyOn(dataAccessAction, 'getAll').mockResolvedValue(actions)
 
     const loginResponse = await authService.login({
       email: user.email,
@@ -106,7 +101,7 @@ describe('AuthService', () => {
 
   it('register', async () => {
     jest
-      .spyOn(dataAccessUserService, 'createUser')
+      .spyOn(dataAccessUser, 'createUser')
       .mockResolvedValue({ ...user, roles })
 
     const registerResponse = await authService.register({

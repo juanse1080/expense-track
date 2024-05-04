@@ -39,7 +39,7 @@ async function bootstrap() {
   const port = process.env.PORT || 3000
 
   const config = new DocumentBuilder()
-    .setTitle('Nest interview API')
+    .setTitle('Expense track API')
     .setDescription('API builded with Nest JS')
     .setVersion('1.0')
     .setExternalDoc('Download JSON Specifications', '/docs-json')

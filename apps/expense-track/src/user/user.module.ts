@@ -1,6 +1,5 @@
-import { DataAccessModule } from '@expense-track/data-access'
+import { DataAccessModule } from '@expense-track/nestjs/respositories'
 import { Module } from '@nestjs/common'
-
 import { UserController } from './user.controller'
 import { UserService } from './user.service'
 

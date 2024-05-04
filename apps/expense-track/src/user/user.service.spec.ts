@@ -1,12 +1,11 @@
 import {
   DataAccessModule,
-  DataAccessUserService,
-} from '@expense-track/data-access'
+  DataAccessUser,
+} from '@expense-track/nestjs/respositories'
+import { UserModel } from '@expense-track/shared/types'
 import { createMock } from '@golevelup/ts-jest'
 import { Test, TestingModule } from '@nestjs/testing'
 import * as bcryptjs from 'bcryptjs'
-
-import { UserModel } from '@expense-track/types'
 import { UserService } from './user.service'
 
 describe('UserService', () => {
@@ -30,7 +29,7 @@ describe('UserService', () => {
   }
 
   let userService: UserService
-  let dataAccessUserService: DataAccessUserService
+  let dataAccessUser: DataAccessUser
 
   beforeEach(async () => {
     jest.clearAllMocks()
@@ -43,9 +42,7 @@ describe('UserService', () => {
       .compile()
 
     userService = module.get<UserService>(UserService)
-    dataAccessUserService = module.get<DataAccessUserService>(
-      DataAccessUserService
-    )
+    dataAccessUser = module.get<DataAccessUser>(DataAccessUser)
   })
 
   it('should be defined', () => {
@@ -53,7 +50,7 @@ describe('UserService', () => {
   })
 
   it('create user', async () => {
-    jest.spyOn(dataAccessUserService, 'createUser').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'createUser').mockResolvedValue(user)
 
     const userCreated = await userService.create({
       name: user.name,
@@ -71,7 +68,7 @@ describe('UserService', () => {
   })
 
   it('create user', async () => {
-    jest.spyOn(dataAccessUserService, 'createUser').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'createUser').mockResolvedValue(user)
 
     const userCreated = await userService.create({
       name: user.name,
@@ -89,8 +86,8 @@ describe('UserService', () => {
   })
 
   it('update user', async () => {
-    jest.spyOn(dataAccessUserService, 'getUnique').mockResolvedValue(user)
-    jest.spyOn(dataAccessUserService, 'updateUser').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'getUnique').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'updateUser').mockResolvedValue(user)
 
     const userUpdated = await userService.update(user.id, {
       name: user.name,
@@ -101,28 +98,28 @@ describe('UserService', () => {
   })
 
   it('find user', async () => {
-    jest.spyOn(dataAccessUserService, 'getUnique').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'getUnique').mockResolvedValue(user)
 
     const currentUser = await userService.findOne(user.id)
     expect(currentUser).toEqual(user)
   })
 
   it('find user fail', async () => {
-    jest.spyOn(dataAccessUserService, 'getUnique').mockResolvedValue(undefined)
+    jest.spyOn(dataAccessUser, 'getUnique').mockResolvedValue(undefined)
 
     await expect(userService.findOne(user.id)).rejects.toThrow('User not found')
   })
 
   it('find users', async () => {
-    jest.spyOn(dataAccessUserService, 'getAll').mockResolvedValue([user])
+    jest.spyOn(dataAccessUser, 'getAll').mockResolvedValue([user])
 
     const users = await userService.findAll({})
     expect(users).toEqual([user])
   })
 
   it('remove user', async () => {
-    jest.spyOn(dataAccessUserService, 'getUnique').mockResolvedValue(user)
-    jest.spyOn(dataAccessUserService, 'deleteUser').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'getUnique').mockResolvedValue(user)
+    jest.spyOn(dataAccessUser, 'deleteUser').mockResolvedValue(user)
 
     const removedUser = await userService.remove(user.id)
     expect(removedUser).toEqual(user)

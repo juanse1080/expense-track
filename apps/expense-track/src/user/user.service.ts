@@ -1,21 +1,20 @@
-import { DataAccessUserService } from '@expense-track/data-access'
+import { DataAccessUser } from '@expense-track/nestjs/respositories'
+import { UserModel } from '@expense-track/shared/types'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import * as bcryptjs from 'bcryptjs'
-
-import { UserModel } from '@expense-track/types'
 import { Pagination } from '../app/interfaces/pagination.interface'
 import { CreateUserInput } from './interfaces/create-user.interface'
 import { UpdateUserInput } from './interfaces/update-user.interface'
 
 @Injectable()
 export class UserService {
-  constructor(private readonly dataAccessUserService: DataAccessUserService) {}
+  constructor(private readonly dataAccessUser: DataAccessUser) {}
 
   async create({ name, email, roles }: CreateUserInput): Promise<UserModel> {
     const tempPassword = 'test'
     const hashedPassword = await bcryptjs.hash(tempPassword, 10)
 
-    return await this.dataAccessUserService.createUser({
+    return await this.dataAccessUser.createUser({
       name,
       email,
       password: hashedPassword,
@@ -26,13 +25,13 @@ export class UserService {
   }
 
   findAll(pagination: Pagination): Promise<UserModel[]> {
-    return this.dataAccessUserService.getAll({
+    return this.dataAccessUser.getAll({
       ...pagination,
     })
   }
 
   async findOne(id: number): Promise<UserModel> {
-    const user = await this.dataAccessUserService.getUnique({
+    const user = await this.dataAccessUser.getUnique({
       id,
     })
 
@@ -47,7 +46,7 @@ export class UserService {
   ): Promise<UserModel> {
     await this.findOne(id)
 
-    return await this.dataAccessUserService.updateUser({
+    return await this.dataAccessUser.updateUser({
       data: {
         roles: {
           set: roles.map((role) => ({ code: role })),
@@ -63,7 +62,7 @@ export class UserService {
   async remove(id: number): Promise<UserModel> {
     await this.findOne(id)
 
-    return await this.dataAccessUserService.deleteUser({
+    return await this.dataAccessUser.deleteUser({
       id,
     })
   }

@@ -1,4 +1,4 @@
-import { IsUnique } from '@expense-track/prisma-client'
+import { IsUnique } from '@expense-track/nestjs/prisma-client'
 import { Transform } from 'class-transformer'
 import { IsEmail, IsString, MinLength } from 'class-validator'
 import { RegisterInput } from '../interfaces/register.dto'

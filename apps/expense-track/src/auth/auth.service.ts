@@ -1,27 +1,26 @@
 import {
-  DataAccessActionService,
-  DataAccessUserService,
-} from '@expense-track/data-access'
-import { AuthModel, UserModel } from '@expense-track/types'
+  DataAccessAction,
+  DataAccessUser,
+} from '@expense-track/nestjs/respositories'
+import { AuthModel, UserModel } from '@expense-track/shared/types'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import * as bcryptjs from 'bcryptjs'
-
 import { LoginInput } from './interfaces/login.interface'
 import { RegisterInput } from './interfaces/register.dto'
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly dataAccessUserService: DataAccessUserService,
-    private readonly dataAccessActionService: DataAccessActionService,
+    private readonly dataAccessUser: DataAccessUser,
+    private readonly dataAccessAction: DataAccessAction,
     private readonly jwtService: JwtService
   ) {}
 
   async register({ password, email, name }: RegisterInput): Promise<AuthModel> {
     const hashedPassword = await bcryptjs.hash(password, 10)
 
-    const user = await this.dataAccessUserService.createUser({
+    const user = await this.dataAccessUser.createUser({
       name,
       email,
       password: hashedPassword,
@@ -31,7 +30,7 @@ export class AuthService {
   }
 
   async login({ email, password }: LoginInput): Promise<AuthModel> {
-    const user = await this.dataAccessUserService.getUnique({ email })
+    const user = await this.dataAccessUser.getUnique({ email })
 
     if (!user) throw new UnauthorizedException('Invalid email')
 
@@ -43,7 +42,7 @@ export class AuthService {
   }
 
   private async getActionsByRoles(roles: string[]): Promise<string[]> {
-    const actions = await this.dataAccessActionService.getAll({
+    const actions = await this.dataAccessAction.getAll({
       where: {
         roles: {
           some: {
