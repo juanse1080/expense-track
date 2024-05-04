@@ -1,0 +1,20 @@
+{
+  "name": "shared-types",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/types/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "tsc --noEmit -p libs/shared/types/tsconfig.json"
+          }
+        ]
+      }
+    }
+  },
+  "implicitDependencies": ["prisma-schema"]
+}
