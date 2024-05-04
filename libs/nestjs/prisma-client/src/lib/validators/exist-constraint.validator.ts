@@ -1,4 +1,4 @@
-import { ModelName } from '@expense-track/shared/types'
+import { ModelName } from '@expense-track/shared-types'
 import { Injectable } from '@nestjs/common'
 import {
   ValidationArguments,

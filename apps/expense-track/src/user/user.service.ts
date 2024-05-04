@@ -1,5 +1,5 @@
-import { DataAccessUser } from '@expense-track/nestjs/respositories'
-import { UserModel } from '@expense-track/shared/types'
+import { DataAccessUser } from '@expense-track/nestjs-respositories'
+import { UserModel } from '@expense-track/shared-types'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import * as bcryptjs from 'bcryptjs'
 import { Pagination } from '../app/interfaces/pagination.interface'

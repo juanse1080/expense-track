@@ -2,8 +2,8 @@ import {
   DataAccessAction,
   DataAccessModule,
   DataAccessUser,
-} from '@expense-track/nestjs/respositories'
-import { ActionModel, RoleModel, UserModel } from '@expense-track/shared/types'
+} from '@expense-track/nestjs-respositories'
+import { ActionModel, RoleModel, UserModel } from '@expense-track/shared-types'
 import { createMock } from '@golevelup/ts-jest'
 import { JwtModule, JwtService } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'

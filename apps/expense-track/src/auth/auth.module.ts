@@ -1,4 +1,4 @@
-import { DataAccessModule } from '@expense-track/nestjs/respositories'
+import { DataAccessModule } from '@expense-track/nestjs-respositories'
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { jwtConstants } from './auth.constants'

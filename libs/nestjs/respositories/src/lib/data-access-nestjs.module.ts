@@ -1,4 +1,4 @@
-import { PrismaClientModule } from '@expense-track/nestjs/prisma-client'
+import { PrismaClientModule } from '@expense-track/nestjs-prisma-client'
 import { Module } from '@nestjs/common'
 import {
   DataAccessAction,

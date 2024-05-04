@@ -1,8 +1,8 @@
 import {
   DataAccessModule,
   DataAccessUser,
-} from '@expense-track/nestjs/respositories'
-import { UserModel } from '@expense-track/shared/types'
+} from '@expense-track/nestjs-respositories'
+import { UserModel } from '@expense-track/shared-types'
 import { createMock } from '@golevelup/ts-jest'
 import { Test, TestingModule } from '@nestjs/testing'
 import * as bcryptjs from 'bcryptjs'

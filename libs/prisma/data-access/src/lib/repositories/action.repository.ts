@@ -1,4 +1,4 @@
-import { ActionModel } from '@expense-track/shared/types'
+import { ActionModel } from '@expense-track/shared-types'
 import { Prisma, PrismaClient } from '@prisma/client'
 
 export class ActionRepository {

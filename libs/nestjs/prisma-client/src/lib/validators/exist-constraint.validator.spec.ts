@@ -1,4 +1,4 @@
-import { RoleModel } from '@expense-track/shared/types'
+import { RoleModel } from '@expense-track/shared-types'
 import { PrismaService } from '../prisma.service'
 import { ExistConstraint } from './exist-constraint.validator'
 

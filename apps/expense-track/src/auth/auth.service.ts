@@ -1,8 +1,8 @@
 import {
   DataAccessAction,
   DataAccessUser,
-} from '@expense-track/nestjs/respositories'
-import { AuthModel, UserModel } from '@expense-track/shared/types'
+} from '@expense-track/nestjs-respositories'
+import { AuthModel, UserModel } from '@expense-track/shared-types'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import * as bcryptjs from 'bcryptjs'

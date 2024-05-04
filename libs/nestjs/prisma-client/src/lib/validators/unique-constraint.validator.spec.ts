@@ -1,4 +1,4 @@
-import { UserModel } from '@expense-track/shared/types'
+import { UserModel } from '@expense-track/shared-types'
 import { PrismaService } from '../prisma.service'
 import { IsUniqueConstraint } from './unique-constraint.validator'
 

@@ -1,5 +1,5 @@
-import { Prisma, PrismaClient } from '@expense-track/nestjs/prisma-client'
-import { RoleModel } from '@expense-track/shared/types'
+import { Prisma, PrismaClient } from '@expense-track/nestjs-prisma-client'
+import { RoleModel } from '@expense-track/shared-types'
 
 export class RoleRepository {
   constructor(protected prisma: PrismaClient) {}

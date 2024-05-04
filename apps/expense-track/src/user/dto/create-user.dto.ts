@@ -1,4 +1,4 @@
-import { Exist, IsUnique } from '@expense-track/nestjs/prisma-client'
+import { Exist, IsUnique } from '@expense-track/nestjs-prisma-client'
 import {
   ArrayMinSize,
   IsArray,
