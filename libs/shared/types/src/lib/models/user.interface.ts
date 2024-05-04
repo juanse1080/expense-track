@@ -1,6 +1,6 @@
-import { User as UserPrisma } from '@prisma/client'
+import { User } from '@prisma/client'
 import { RoleModel } from './role.interface'
 
-export type UserModel = UserPrisma & {
+export type UserModel = User & {
   roles: RoleModel[]
 }

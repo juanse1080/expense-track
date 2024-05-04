@@ -1,3 +1,3 @@
-import { Role as RolePrisma } from '@prisma/client'
+import { Role } from '@prisma/client'
 
-export type RoleModel = RolePrisma
+export type RoleModel = Role

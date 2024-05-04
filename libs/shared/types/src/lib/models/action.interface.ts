@@ -1,3 +1,3 @@
-import { Action as ActionPrisma } from '@prisma/client'
+import { Action } from '@prisma/client'
 
-export type ActionModel = ActionPrisma
+export type ActionModel = Action
