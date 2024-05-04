@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class DataAccessUser extends UserRepository {
-  constructor(prisma: PrismaService) {
-    super(prisma)
+  constructor(readonly prisma: PrismaService) {
+    super()
   }
 }

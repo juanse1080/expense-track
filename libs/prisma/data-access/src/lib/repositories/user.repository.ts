@@ -1,8 +1,8 @@
 import { Prisma, PrismaClient } from '@expense-track/nestjs-prisma-client'
 import { UserModel } from '@expense-track/shared-types'
 
-export class UserRepository {
-  constructor(protected prisma: PrismaClient) {}
+export abstract class UserRepository {
+  abstract readonly prisma: PrismaClient
 
   async getUnique(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput

@@ -1,8 +1,8 @@
 import { ActionModel } from '@expense-track/shared-types'
 import { Prisma, PrismaClient } from '@prisma/client'
 
-export class ActionRepository {
-  constructor(protected prisma: PrismaClient) {}
+export abstract class ActionRepository {
+  abstract readonly prisma: PrismaClient
 
   async getUnique(
     userWhereUniqueInput: Prisma.ActionWhereUniqueInput
