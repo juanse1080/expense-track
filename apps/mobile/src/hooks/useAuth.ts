@@ -3,6 +3,8 @@ import { router } from 'expo-router'
 
 import { useCallback, useContext } from 'react'
 
+export const firstPage = '/tabs/users'
+
 const useAuth = () => {
   const { loading, setLoading, auth, setAuth } = useContext(AuthContext)
 
@@ -14,7 +16,7 @@ const useAuth = () => {
   const login = useCallback(
     (newAuth: AuthModel) => {
       setAuth(newAuth)
-      router.push('/profile')
+      router.push(firstPage)
     },
     [setAuth, router]
   )
