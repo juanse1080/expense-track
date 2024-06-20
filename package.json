@@ -5,6 +5,7 @@
   "scripts": {
     "tsc": "nx run-many --target=tsc --all=true --verbose",
     "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "postinstall": "nx prisma:generate prisma-schema",
     "api:tsc": "nx tsc expense-track",
     "api:dev": "nx serve expense-track",
     "api:build": "nx build expense-track",

@@ -31,6 +31,7 @@ export default function Login() {
   const onSubmit = async (data: loginSchemaType) => {
     try {
       const response = await fetchData('sign-in', { data, method: 'POST' })
+      console.log(response)
       login(response)
     } catch (err: any) {
       if (err.response?.data?.statusCode === 401)

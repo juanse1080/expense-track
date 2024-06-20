@@ -23,7 +23,7 @@
       }
     },
     "prisma:seed": {
-      "command": "ts-node -r dotenv/config --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+      "command": "ts-node -r dotenv/config prisma/seed.ts",
       "options": {
         "cwd": "libs/prisma-schema"
       }
